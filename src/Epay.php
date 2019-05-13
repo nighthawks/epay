@@ -154,17 +154,18 @@ class Epay
     /**
      * Generate html hidden inputs
      * @method generateHiddenInputs
+     * @param  string $page Page type
      * @param  string $successUrl Return after success
      * @param  string $cancelUrl Return after cancel
      * @return string generated html
      */
-    public function generateHiddenInputs($successUrl = FALSE, $cancelUrl = FALSE)
+    public function generateHiddenInputs($page = 'paylogin', $successUrl = FALSE, $cancelUrl = FALSE)
     {
         $successUrl = $successUrl ? $successUrl : $this->config['success_url'];
         $cancelUrl = $cancelUrl ? $cancelUrl : $this->config['cancel_url'];
 
         return '
-            <input type="hidden" name="PAGE" value="paylogin">
+            <input type="hidden" name="PAGE" value="' . $page . '">
             <input type="hidden" name="ENCODED" value="' . $this->getData() . '">
             <input type="hidden" name="CHECKSUM" value="' . $this->getChecksum() . '">
             <input type="hidden" name="URL_OK" value="' . $successUrl . '">
